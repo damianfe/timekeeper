@@ -20,9 +20,6 @@ importers:
 
   apps/api:
     dependencies:
-      '@types/bcrypt':
-        specifier: ^5.0.2
-        version: 5.0.2
       '@types/mongoose':
         specifier: ^5.11.97
         version: 5.11.97
@@ -39,6 +36,9 @@ importers:
         specifier: ^8.4.0
         version: 8.4.0
     devDependencies:
+      '@types/bcrypt':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
