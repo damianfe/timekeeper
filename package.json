@@ -8,18 +8,16 @@
     "dev": "pnpm run --parallel dev",
     "dev:front": "pnpm run --filter front dev",
     "dev:api": "pnpm run --filter api dev",
-    "dev:apps": "pnpm run --filter api --filter front dev"
+    "dev:apps": "pnpm run --filter api --filter front dev",
+    "init-roles": "ts-node apps/api/src/scripts/init-roles.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    
-  },
   "devDependencies": {
     "@eslint/compat": "^1.0.1",
     "@eslint/js": "^9.3.0",
-    "globals": "^15.3.0"
-   
+    "globals": "^15.3.0",
+    "ts-node": "^10.9.2"
   }
 }

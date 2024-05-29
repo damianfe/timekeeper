@@ -16,7 +16,7 @@ const mongooseOptions: mongoose.ConnectOptions = {
 };
 
 // Conectar a la base de datos
-mongoose.connect('mongodb+srv://damianfernandezdev:root@cluster0.ackid4h.mongodb.net/', mongooseOptions)
+mongoose.connect('mongodb+srv://damianfernandezdev:root@cluster0.ackid4h.mongodb.net/freelance_timekeeper', mongooseOptions)
 .then(() => {
   console.log('Conectado a la base de datos MongoDB');
   // Iniciar el servidor

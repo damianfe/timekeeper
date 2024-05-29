@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export interface User {
   id: string;
   firstName: string;
@@ -6,5 +8,5 @@ export interface User {
   password: string;
   birthDate: Date;
   phone: string;
-  clientId?: string;
+  role: Types.ObjectId;
 }
