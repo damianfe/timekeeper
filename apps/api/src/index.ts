@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import authRoutes from './presentation/routes/user.routes';
 import projectRoutes from './presentation/routes/project.routes';
-
+import taskRoutes from'./presentation/routes/task.routes'
 const app = express();
 
 // Middleware para parsear JSON
@@ -11,6 +11,7 @@ app.use(express.json());
 // Configurar rutas
 app.use('/api/auth', authRoutes);
 app.use('/api', projectRoutes);
+app.use('/api', taskRoutes);
 // Opciones de conexión (agregar según sea necesario)
 const mongooseOptions: mongoose.ConnectOptions = {
   // Aquí puedes agregar cualquier otra opción necesaria
