@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { AddProjectUseCase } from '../../application/use-cases/add-project';
 import { MongooseProjectRepository } from '../../infrastructure/repositories/mongoose/mongoose.project.repository';
-import { Types } from 'mongoose';
+import { Schema } from 'mongoose';
+import { Project } from '../../domain/entities/project.entity';
 
 const projectRepository = new MongooseProjectRepository();
 const addProjectUseCase = new AddProjectUseCase(projectRepository);
@@ -15,16 +16,16 @@ export const addProject = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Todos los campos obligatorios, excepto clientId, deben estar completos.' });
     }
 
-    const project = {
+    const project = new Project(
       name,
       description,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      new Date(startDate),
+      new Date(endDate),
       hourlyRate,
-      clientId: clientId ? new Types.ObjectId(clientId) : undefined, // Opcional
       status,
-      tasks: [],
-    };
+      clientId ? new Schema.Types.ObjectId(clientId) : undefined, // Opcional
+      []
+    );
 
     const newProject = await addProjectUseCase.execute(project);
     res.status(201).json({ message: 'Proyecto agregado correctamente.', project: newProject });

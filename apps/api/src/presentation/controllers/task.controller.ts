@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { AddTaskUseCase } from '../../application/use-cases/add-task';
 import { MongooseTaskRepository } from '../../infrastructure/repositories/mongoose/mongoose.task.repository';
-import { Types } from 'mongoose';
+import { Schema } from 'mongoose';
+import { Task } from '../../domain/entities/task.entity';
 
 const taskRepository = new MongooseTaskRepository();
 const addTaskUseCase = new AddTaskUseCase(taskRepository);
@@ -15,14 +16,14 @@ export const addTask = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Todos los campos son obligatorios, excepto endDate.' });
     }
 
-    const task = {
+    const task: Task = {
       name,
       description,
       startDate: new Date(startDate),
-      endDate: endDate ? new Date(endDate) : undefined,
+      endDate: endDate ? new Date(endDate) : null, // Cambiar a null en lugar de undefined
       timeSpent,
       status,
-      projectId: new Types.ObjectId(projectId)
+      projectId: new Schema.Types.ObjectId(projectId)
     };
 
     const newTask = await addTaskUseCase.execute(task);
